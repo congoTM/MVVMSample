@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="MVVMExample.View.DetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVMExample.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Height="200">
+
+	<StackPanel Orientation="Vertical" Background="White">
+		<ComboBox x:Name="ComboBox" Width="100" Height="30" ItemsSource="{Binding AllHoles}" SelectedItem="{Binding CurrentHole, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding NumeroID, StringFormat=Id: {0:0}}"  />
+					</StackPanel>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<StackPanel Orientation="Vertical" Margin="0,5" DataContext="{Binding ElementName=ComboBox, Path=SelectedItem, UpdateSourceTrigger=PropertyChanged}">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<TextBlock Text="Length:" HorizontalAlignment="Right" Margin="5"/>
+				<TextBlock Text="{Binding Length}" HorizontalAlignment="Left" Margin="5"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<TextBlock Text="Stemming:" HorizontalAlignment="Right" Margin="5"/>
+				<TextBlock Text="{Binding Stemming}" HorizontalAlignment="Left" Margin="5"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<TextBlock Text="Total hole width:" HorizontalAlignment="Right" Margin="5"/>
+				<TextBlock Text="{Binding HoleWidthTotal}" HorizontalAlignment="Left" Margin="5" />
+			</StackPanel>
+		</StackPanel>
+	</StackPanel>
+</UserControl>
